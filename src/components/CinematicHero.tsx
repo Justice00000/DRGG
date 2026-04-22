@@ -1,12 +1,11 @@
 import { motion } from "framer-motion";
-import { Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import portrait from "@/assets/portrait-hero.jpg";
 import { profile } from "@/lib/profile";
 
 export function CinematicHero() {
   return (
     <section className="relative min-h-screen w-full overflow-hidden grain">
-      {/* Background image */}
       <div className="absolute inset-0">
         <motion.img
           initial={{ scale: 1.15, opacity: 0 }}
@@ -16,16 +15,11 @@ export function CinematicHero() {
           alt="God'sgift Chukwuonye"
           className="h-full w-full object-cover object-[60%_30%]"
         />
-        {/* Cinematic gradient veils */}
         <div className="absolute inset-0 bg-gradient-to-r from-background via-background/85 to-background/30" />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/40" />
-        <div
-          className="absolute inset-0 opacity-60"
-          style={{ background: "var(--gradient-aurora)" }}
-        />
+        <div className="absolute inset-0 opacity-60" style={{ background: "var(--gradient-aurora)" }} />
       </div>
 
-      {/* Top meta bar */}
       <motion.div
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
@@ -38,7 +32,6 @@ export function CinematicHero() {
         </span>
       </motion.div>
 
-      {/* Main content */}
       <div className="relative z-10 mx-auto max-w-7xl px-6 pt-40 pb-32 min-h-screen flex flex-col justify-center">
         <motion.p
           initial={{ opacity: 0, y: 20 }}
@@ -55,11 +48,7 @@ export function CinematicHero() {
               key={i}
               initial={{ opacity: 0, y: 60 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{
-                delay: 0.6 + i * 0.15,
-                duration: 1.1,
-                ease: [0.16, 1, 0.3, 1],
-              }}
+              transition={{ delay: 0.6 + i * 0.15, duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
               className="inline-block mr-4"
             >
               {word}
@@ -107,7 +96,6 @@ export function CinematicHero() {
         </motion.div>
       </div>
 
-      {/* Scroll indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

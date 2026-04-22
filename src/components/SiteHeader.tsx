@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 const nav = [
@@ -13,6 +13,7 @@ const nav = [
 export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const { pathname } = useLocation();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -21,17 +22,15 @@ export function SiteHeader() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const isActive = (to: string) => (to === "/" ? pathname === "/" : pathname.startsWith(to));
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled ? "py-3" : "py-6"
       }`}
     >
-      <div
-        className={`mx-auto max-w-7xl px-6 transition-all duration-500 ${
-          scrolled ? "" : ""
-        }`}
-      >
+      <div className="mx-auto max-w-7xl px-6 transition-all duration-500">
         <div
           className={`flex items-center justify-between rounded-full px-5 py-3 transition-all duration-500 ${
             scrolled ? "glass-panel shadow-[var(--shadow-elevate)]" : ""
@@ -56,27 +55,25 @@ export function SiteHeader() {
           </Link>
 
           <nav className="hidden md:flex items-center gap-1">
-            {nav.map((n) => (
-              <Link
-                key={n.to}
-                to={n.to}
-                activeOptions={{ exact: n.to === "/" }}
-                className="relative px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-                activeProps={{
-                  className:
-                    "relative px-4 py-2 text-sm font-medium text-foreground",
-                }}
-              >
-                {({ isActive }) => (
+            {nav.map((n) => {
+              const active = isActive(n.to);
+              return (
+                <Link
+                  key={n.to}
+                  to={n.to}
+                  className={`relative px-4 py-2 text-sm font-medium transition-colors ${
+                    active ? "text-foreground" : "text-muted-foreground hover:text-foreground"
+                  }`}
+                >
                   <span className="relative">
                     {n.label}
-                    {isActive && (
+                    {active && (
                       <span className="absolute -bottom-1 left-0 right-0 mx-auto h-[2px] w-6 rounded-full bg-primary" />
                     )}
                   </span>
-                )}
-              </Link>
-            ))}
+                </Link>
+              );
+            })}
           </nav>
 
           <Link
@@ -95,21 +92,9 @@ export function SiteHeader() {
             className="md:hidden flex flex-col gap-1.5 p-2"
             aria-label="Menu"
           >
-            <span
-              className={`h-[2px] w-5 bg-foreground transition-transform ${
-                open ? "translate-y-2 rotate-45" : ""
-              }`}
-            />
-            <span
-              className={`h-[2px] w-5 bg-foreground transition-opacity ${
-                open ? "opacity-0" : ""
-              }`}
-            />
-            <span
-              className={`h-[2px] w-5 bg-foreground transition-transform ${
-                open ? "-translate-y-2 -rotate-45" : ""
-              }`}
-            />
+            <span className={`h-[2px] w-5 bg-foreground transition-transform ${open ? "translate-y-2 rotate-45" : ""}`} />
+            <span className={`h-[2px] w-5 bg-foreground transition-opacity ${open ? "opacity-0" : ""}`} />
+            <span className={`h-[2px] w-5 bg-foreground transition-transform ${open ? "-translate-y-2 -rotate-45" : ""}`} />
           </button>
         </div>
 

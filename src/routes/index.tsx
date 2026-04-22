@@ -1,38 +1,27 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { CinematicHero } from "@/components/CinematicHero";
 import { Marquee } from "@/components/Marquee";
 import { SectionHeader } from "@/components/SectionHeader";
 import { stats, expertise, research, publications } from "@/lib/profile";
+import { useSEO } from "@/lib/seo";
 import portraitField from "@/assets/portrait-field.jpg";
 import portraitArizona from "@/assets/portrait-arizona.jpg";
 
-export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "God'sgift Chukwuonye — Ph.D. Environmental Scientist" },
-      {
-        name: "description",
-        content:
-          "Cinematic portfolio of Dr. God'sgift Chukwuonye — exposure science, environmental justice, and cumulative risk assessment.",
-      },
-      { property: "og:title", content: "God'sgift Chukwuonye — Environmental Scientist" },
-      {
-        property: "og:description",
-        content:
-          "Characterizing toxic mixtures and cumulative risks in environmental justice communities.",
-      },
-    ],
-  }),
-  component: Index,
-});
+export default function Index() {
+  useSEO({
+    title: "God'sgift Chukwuonye — Ph.D. Environmental Scientist",
+    description:
+      "Cinematic portfolio of Dr. God'sgift Chukwuonye — exposure science, environmental justice, and cumulative risk assessment.",
+    ogTitle: "God'sgift Chukwuonye — Environmental Scientist",
+    ogDescription:
+      "Characterizing toxic mixtures and cumulative risks in environmental justice communities.",
+  });
 
-function Index() {
   return (
     <>
       <CinematicHero />
 
-      {/* Stats strip */}
       <section className="relative border-y border-border/60 bg-card/30">
         <div className="mx-auto max-w-7xl px-6 py-12 grid grid-cols-2 md:grid-cols-4 gap-8">
           {stats.map((s, i) => (
@@ -56,7 +45,6 @@ function Index() {
 
       <Marquee />
 
-      {/* Intro section with portrait */}
       <section className="relative py-32 overflow-hidden">
         <div className="mx-auto max-w-7xl px-6">
           <SectionHeader
@@ -127,7 +115,6 @@ function Index() {
         </div>
       </section>
 
-      {/* Expertise grid */}
       <section className="relative py-32 bg-card/30 border-y border-border/60">
         <div className="mx-auto max-w-7xl px-6">
           <SectionHeader
@@ -150,9 +137,7 @@ function Index() {
                 transition={{ delay: i * 0.1, duration: 0.8 }}
                 className="group relative bg-background p-10 hover:bg-card transition-colors duration-500"
               >
-                <p className="font-mono text-xs text-primary mb-6">
-                  0{i + 1}
-                </p>
+                <p className="font-mono text-xs text-primary mb-6">0{i + 1}</p>
                 <h3 className="font-display text-3xl mb-4 group-hover:text-gradient-copper transition-all">
                   {e.title}
                 </h3>
@@ -164,7 +149,6 @@ function Index() {
         </div>
       </section>
 
-      {/* Featured research */}
       <section className="relative py-32 overflow-hidden">
         <div className="mx-auto max-w-7xl px-6">
           <SectionHeader
@@ -190,19 +174,14 @@ function Index() {
               transition={{ duration: 1.2 }}
               className="md:col-span-6 relative aspect-[4/5] rounded-3xl overflow-hidden order-2 md:order-1"
             >
-              <img
-                src={portraitField}
-                alt="Field research"
-                className="h-full w-full object-cover"
-              />
+              <img src={portraitField} alt="Field research" className="h-full w-full object-cover" />
               <div className="absolute inset-0 bg-gradient-to-tr from-background/70 to-transparent" />
               <div className="absolute bottom-8 left-8 right-8 glass-panel rounded-2xl p-6">
                 <p className="font-mono text-[10px] uppercase tracking-wider text-primary">
                   Field work · 2024
                 </p>
                 <p className="font-display text-xl mt-2">
-                  Wildfire-flood remobilization of PFAS in copper-mining
-                  communities.
+                  Wildfire-flood remobilization of PFAS in copper-mining communities.
                 </p>
               </div>
             </motion.div>
@@ -220,9 +199,7 @@ function Index() {
                   <h4 className="font-display text-2xl mb-2 group-hover:text-primary transition-colors">
                     {r.title}
                   </h4>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    {r.summary}
-                  </p>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{r.summary}</p>
                   <div className="flex flex-wrap gap-2 mt-4">
                     {r.methods.map((m) => (
                       <span
@@ -246,7 +223,6 @@ function Index() {
         </div>
       </section>
 
-      {/* Recent publications strip */}
       <section className="relative py-32 bg-card/30 border-y border-border/60">
         <div className="mx-auto max-w-7xl px-6">
           <SectionHeader
@@ -294,12 +270,8 @@ function Index() {
         </div>
       </section>
 
-      {/* CTA */}
       <section className="relative py-40 overflow-hidden">
-        <div
-          className="absolute inset-0 opacity-50"
-          style={{ background: "var(--gradient-aurora)" }}
-        />
+        <div className="absolute inset-0 opacity-50" style={{ background: "var(--gradient-aurora)" }} />
         <div className="relative mx-auto max-w-5xl px-6 text-center">
           <p className="font-mono text-xs uppercase tracking-[0.4em] text-primary mb-8">
             05 / Collaborate
@@ -307,9 +279,7 @@ function Index() {
           <h2 className="font-display text-5xl md:text-7xl lg:text-8xl leading-[0.95] tracking-tighter">
             Have a project at the
             <br />
-            <span className="italic text-gradient-copper">
-              edge of science &amp; justice?
-            </span>
+            <span className="italic text-gradient-copper">edge of science &amp; justice?</span>
           </h2>
           <p className="mt-8 text-lg text-muted-foreground max-w-2xl mx-auto">
             I&rsquo;m open to collaborations, consulting, speaking engagements,

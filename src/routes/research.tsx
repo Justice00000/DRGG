@@ -1,29 +1,15 @@
-import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { SectionHeader } from "@/components/SectionHeader";
 import { research } from "@/lib/profile";
+import { useSEO } from "@/lib/seo";
 
-export const Route = createFileRoute("/research")({
-  head: () => ({
-    meta: [
-      { title: "Research — God'sgift Chukwuonye" },
-      {
-        name: "description",
-        content:
-          "Active research on toxic layering, compound climate extremes, drinking water justice, and rooftop-harvested rainwater contamination.",
-      },
-      { property: "og:title", content: "Research — God'sgift Chukwuonye" },
-      {
-        property: "og:description",
-        content:
-          "Exposure science at the intersection of environmental justice and compound climate extremes.",
-      },
-    ],
-  }),
-  component: ResearchPage,
-});
+export default function ResearchPage() {
+  useSEO({
+    title: "Research — God'sgift Chukwuonye",
+    description:
+      "Active research on toxic layering, compound climate extremes, drinking water justice, and rooftop-harvested rainwater contamination.",
+  });
 
-function ResearchPage() {
   return (
     <div className="pt-32 pb-20">
       <div className="mx-auto max-w-7xl px-6">
@@ -65,9 +51,7 @@ function ResearchPage() {
                 <h3 className="font-display text-3xl md:text-4xl mb-4 leading-tight">
                   {r.title}
                 </h3>
-                <p className="text-foreground/85 leading-relaxed text-lg">
-                  {r.summary}
-                </p>
+                <p className="text-foreground/85 leading-relaxed text-lg">{r.summary}</p>
               </div>
               <div className="relative md:col-span-3">
                 <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground mb-3">
@@ -75,10 +59,7 @@ function ResearchPage() {
                 </p>
                 <ul className="space-y-2">
                   {r.methods.map((m) => (
-                    <li
-                      key={m}
-                      className="text-sm text-foreground/80 flex items-center gap-2"
-                    >
+                    <li key={m} className="text-sm text-foreground/80 flex items-center gap-2">
                       <span className="h-px w-4 bg-primary" />
                       {m}
                     </li>
@@ -89,7 +70,6 @@ function ResearchPage() {
           ))}
         </div>
 
-        {/* Lab affiliation */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -102,8 +82,7 @@ function ResearchPage() {
             Affiliation
           </p>
           <h3 className="font-display text-4xl md:text-6xl text-[var(--ink)] leading-[1.05] tracking-tight max-w-3xl">
-            Ramírez-Andreotta Integrated Environmental Science &amp; Health Risk
-            Lab
+            Ramírez-Andreotta Integrated Environmental Science &amp; Health Risk Lab
           </h3>
           <p className="mt-6 text-[var(--ink)]/80 max-w-2xl text-lg">
             University of Arizona · College of Agriculture, Life &amp;

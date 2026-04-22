@@ -1,32 +1,18 @@
-import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { SectionHeader } from "@/components/SectionHeader";
 import { education, honors, profile } from "@/lib/profile";
+import { useSEO } from "@/lib/seo";
 import portraitForest from "@/assets/portrait-forest.jpg";
 import portraitMontreal from "@/assets/portrait-montreal.jpg";
 import portraitField from "@/assets/portrait-field.jpg";
 
-export const Route = createFileRoute("/about")({
-  head: () => ({
-    meta: [
-      { title: "About — God'sgift Chukwuonye" },
-      {
-        name: "description",
-        content:
-          "Biography, education, and honors of Dr. God'sgift Chukwuonye — environmental scientist trained across Nigeria, Scotland, and the United States.",
-      },
-      { property: "og:title", content: "About — God'sgift Chukwuonye" },
-      {
-        property: "og:description",
-        content:
-          "Trained across three continents in environmental science, exposure assessment, and participatory research.",
-      },
-    ],
-  }),
-  component: AboutPage,
-});
+export default function AboutPage() {
+  useSEO({
+    title: "About — God'sgift Chukwuonye",
+    description:
+      "Biography, education, and honors of Dr. God'sgift Chukwuonye — environmental scientist trained across Nigeria, Scotland, and the United States.",
+  });
 
-function AboutPage() {
   return (
     <div className="pt-32 pb-20">
       <div className="mx-auto max-w-7xl px-6">
@@ -37,9 +23,7 @@ function AboutPage() {
             <>
               An environmental scientist
               <br />
-              <span className="italic text-gradient-copper">
-                shaped by three continents.
-              </span>
+              <span className="italic text-gradient-copper">shaped by three continents.</span>
             </>
           }
         />
@@ -88,30 +72,17 @@ function AboutPage() {
             className="md:col-span-5 grid grid-cols-2 gap-4"
           >
             <div className="aspect-[3/4] rounded-2xl overflow-hidden">
-              <img
-                src={portraitForest}
-                alt=""
-                className="h-full w-full object-cover"
-              />
+              <img src={portraitForest} alt="" className="h-full w-full object-cover" />
             </div>
             <div className="aspect-[3/4] rounded-2xl overflow-hidden mt-12">
-              <img
-                src={portraitMontreal}
-                alt=""
-                className="h-full w-full object-cover"
-              />
+              <img src={portraitMontreal} alt="" className="h-full w-full object-cover" />
             </div>
             <div className="col-span-2 aspect-[16/9] rounded-2xl overflow-hidden">
-              <img
-                src={portraitField}
-                alt=""
-                className="h-full w-full object-cover"
-              />
+              <img src={portraitField} alt="" className="h-full w-full object-cover" />
             </div>
           </motion.div>
         </div>
 
-        {/* Education timeline */}
         <SectionHeader
           index="01"
           kicker="Education"
@@ -148,16 +119,13 @@ function AboutPage() {
           ))}
         </div>
 
-        {/* Honors */}
         <SectionHeader
           index="02"
           kicker="Honors"
           title={
             <>
               Selected{" "}
-              <span className="italic text-gradient-copper">
-                fellowships &amp; awards.
-              </span>
+              <span className="italic text-gradient-copper">fellowships &amp; awards.</span>
             </>
           }
         />
@@ -178,7 +146,6 @@ function AboutPage() {
           ))}
         </div>
 
-        {/* Quick facts */}
         <div className="glass-panel rounded-3xl p-10 md:p-16">
           <p className="font-mono text-xs uppercase tracking-[0.3em] text-primary mb-6">
             Quick facts
@@ -200,9 +167,7 @@ function AboutPage() {
               <p className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
                 Open to
               </p>
-              <p className="font-display text-2xl mt-1">
-                Postdoc · Industry · Policy
-              </p>
+              <p className="font-display text-2xl mt-1">Postdoc · Industry · Policy</p>
             </div>
           </div>
         </div>

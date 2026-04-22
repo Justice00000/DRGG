@@ -1,29 +1,15 @@
-import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { SectionHeader } from "@/components/SectionHeader";
 import { experience } from "@/lib/profile";
+import { useSEO } from "@/lib/seo";
 
-export const Route = createFileRoute("/experience")({
-  head: () => ({
-    meta: [
-      { title: "Experience — God'sgift Chukwuonye" },
-      {
-        name: "description",
-        content:
-          "Professional experience: Arizona Department of Environmental Quality, Ramírez-Andreotta Lab, USGS Climate Adaptation Science Center, Farm Africa.",
-      },
-      { property: "og:title", content: "Experience — God'sgift Chukwuonye" },
-      {
-        property: "og:description",
-        content:
-          "Environmental scientist roles across academia, government, and international NGOs.",
-      },
-    ],
-  }),
-  component: ExperiencePage,
-});
+export default function ExperiencePage() {
+  useSEO({
+    title: "Experience — God'sgift Chukwuonye",
+    description:
+      "Professional experience: Arizona Department of Environmental Quality, Ramírez-Andreotta Lab, USGS Climate Adaptation Science Center, Farm Africa.",
+  });
 
-function ExperiencePage() {
   return (
     <div className="pt-32 pb-20">
       <div className="mx-auto max-w-7xl px-6">
@@ -34,17 +20,13 @@ function ExperiencePage() {
             <>
               From Ethiopian farms
               <br />
-              to{" "}
-              <span className="italic text-gradient-copper">
-                Arizona watersheds.
-              </span>
+              to <span className="italic text-gradient-copper">Arizona watersheds.</span>
             </>
           }
           description="A decade of environmental work spanning academia, government, and international development."
         />
 
         <div className="relative">
-          {/* Vertical timeline line */}
           <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-primary via-border to-transparent md:-translate-x-px" />
 
           <div className="space-y-12">
@@ -59,7 +41,6 @@ function ExperiencePage() {
                   i % 2 === 0 ? "" : "md:[&>div:first-child]:order-2"
                 }`}
               >
-                {/* Dot */}
                 <div className="absolute left-4 md:left-1/2 top-6 -translate-x-1/2 z-10">
                   <span className="relative flex h-4 w-4">
                     <span className="absolute inset-0 rounded-full bg-primary animate-ping opacity-50" />
@@ -92,15 +73,13 @@ function ExperiencePage() {
           </div>
         </div>
 
-        {/* Leadership */}
         <div className="mt-32">
           <SectionHeader
             index="01"
             kicker="Leadership"
             title={
               <>
-                Building{" "}
-                <span className="italic text-gradient-copper">community</span> &
+                Building <span className="italic text-gradient-copper">community</span> &
                 convening conversations.
               </>
             }

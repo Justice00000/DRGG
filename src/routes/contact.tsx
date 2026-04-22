@@ -1,39 +1,23 @@
-import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { SectionHeader } from "@/components/SectionHeader";
 import { profile } from "@/lib/profile";
+import { useSEO } from "@/lib/seo";
 
-export const Route = createFileRoute("/contact")({
-  head: () => ({
-    meta: [
-      { title: "Contact — God'sgift Chukwuonye" },
-      {
-        name: "description",
-        content:
-          "Get in touch with Dr. God'sgift Chukwuonye for collaborations, consulting, speaking engagements, and faculty conversations.",
-      },
-      { property: "og:title", content: "Contact — God'sgift Chukwuonye" },
-      {
-        property: "og:description",
-        content:
-          "Open to collaborations across exposure science, environmental justice, and climate adaptation.",
-      },
-    ],
-  }),
-  component: ContactPage,
-});
+export default function ContactPage() {
+  useSEO({
+    title: "Contact — God'sgift Chukwuonye",
+    description:
+      "Get in touch with Dr. God'sgift Chukwuonye for collaborations, consulting, speaking engagements, and faculty conversations.",
+  });
 
-function ContactPage() {
   const [sent, setSent] = useState(false);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
     const data = new FormData(form);
-    const subject = encodeURIComponent(
-      `[Portfolio] ${data.get("subject") || "Hello"}`,
-    );
+    const subject = encodeURIComponent(`[Portfolio] ${data.get("subject") || "Hello"}`);
     const body = encodeURIComponent(
       `${data.get("message")}\n\n— ${data.get("name")} (${data.get("email")})`,
     );
@@ -58,7 +42,6 @@ function ContactPage() {
         />
 
         <div className="grid md:grid-cols-12 gap-12">
-          {/* Contact info */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -94,9 +77,7 @@ function ContactPage() {
               <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-primary mb-2">
                 Based
               </p>
-              <p className="font-display text-2xl md:text-3xl">
-                {profile.location}
-              </p>
+              <p className="font-display text-2xl md:text-3xl">{profile.location}</p>
               <p className="text-sm text-muted-foreground mt-1 font-mono">
                 Mountain Time (UTC −7)
               </p>
@@ -131,7 +112,6 @@ function ContactPage() {
             </div>
           </motion.div>
 
-          {/* Form */}
           <motion.form
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}

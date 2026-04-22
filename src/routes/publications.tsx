@@ -1,32 +1,18 @@
-import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { SectionHeader } from "@/components/SectionHeader";
 import { publications } from "@/lib/profile";
-
-export const Route = createFileRoute("/publications")({
-  head: () => ({
-    meta: [
-      { title: "Publications — God'sgift Chukwuonye" },
-      {
-        name: "description",
-        content:
-          "Peer-reviewed publications by Dr. God'sgift Chukwuonye on PFAS, heavy metals, drinking water justice, and compound climate extremes.",
-      },
-      { property: "og:title", content: "Publications — God'sgift Chukwuonye" },
-      {
-        property: "og:description",
-        content:
-          "9+ peer-reviewed publications spanning exposure science, environmental justice, and climate adaptation.",
-      },
-    ],
-  }),
-  component: PublicationsPage,
-});
+import { useSEO } from "@/lib/seo";
 
 const filters = ["All", "First Author", "Co-Author", "In Review"] as const;
 
-function PublicationsPage() {
+export default function PublicationsPage() {
+  useSEO({
+    title: "Publications — God'sgift Chukwuonye",
+    description:
+      "Peer-reviewed publications by Dr. God'sgift Chukwuonye on PFAS, heavy metals, drinking water justice, and compound climate extremes.",
+  });
+
   const [filter, setFilter] = useState<(typeof filters)[number]>("All");
   const filtered =
     filter === "All" ? publications : publications.filter((p) => p.tag === filter);
@@ -41,15 +27,12 @@ function PublicationsPage() {
             <>
               Peer-reviewed work in
               <br />
-              <span className="italic text-gradient-copper">
-                journals that move policy.
-              </span>
+              <span className="italic text-gradient-copper">journals that move policy.</span>
             </>
           }
           description="A growing body of work on environmental exposure, justice, and risk assessment in vulnerable communities."
         />
 
-        {/* Filters */}
         <div className="flex flex-wrap gap-2 mb-12">
           {filters.map((f) => (
             <button
@@ -81,9 +64,7 @@ function PublicationsPage() {
             >
               <div className="grid md:grid-cols-12 gap-6 items-start">
                 <div className="md:col-span-1">
-                  <p className="font-display text-3xl text-primary number-tabular">
-                    {p.year}
-                  </p>
+                  <p className="font-display text-3xl text-primary number-tabular">{p.year}</p>
                 </div>
                 <div className="md:col-span-9">
                   <p className="text-foreground/90 leading-relaxed group-hover:text-foreground transition-colors">
