@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # God'sgift Chukwuonye — Portfolio (Vite + React Router)
 
 ## Local setup
@@ -18,3 +19,6 @@ npm run preview
 - Netlify / Cloudflare Pages: `public/_redirects` handles SPA fallback.
 - Vercel: `vercel.json` handles SPA fallback.
 - Build command: `npm run build` · Output: `dist/`
+=======
+# DRGG
+>>>>>>> 999b7554b06814538ec0e5b616e16bf6392aa089
