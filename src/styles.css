@@ -119,10 +119,6 @@
     font-family: var(--font-sans);
     font-feature-settings: "ss01", "cv11";
     -webkit-font-smoothing: antialiased;
-    background-image:
-      radial-gradient(circle at 0% 0%, oklch(0.32 0.07 200 / 0.4), transparent 40%),
-      radial-gradient(circle at 100% 100%, oklch(0.55 0.13 35 / 0.15), transparent 40%);
-    background-attachment: fixed;
   }
 
   ::selection {
@@ -153,10 +149,16 @@
   }
 
   .glass-panel {
-    background: oklch(0.20 0.028 200 / 0.55);
-    backdrop-filter: blur(20px) saturate(140%);
-    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    background: oklch(0.20 0.028 200 / 0.75);
     border: 1px solid oklch(0.96 0.015 80 / 0.08);
+  }
+
+  @media (min-width: 768px) {
+    .glass-panel {
+      background: oklch(0.20 0.028 200 / 0.55);
+      backdrop-filter: blur(20px) saturate(140%);
+      -webkit-backdrop-filter: blur(20px) saturate(140%);
+    }
   }
 
   .grain::before {
@@ -165,7 +167,6 @@
     inset: 0;
     pointer-events: none;
     opacity: 0.06;
-    mix-blend-mode: overlay;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
 
